@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+# usage:
+#
+# $ baz() { print $1 | grep baz }
+# $ filter baz titi bazaar biz
+# bazaar
+# filter() {
+    (($#<1)) && {
+        {
+            print -- "usage: filter func list"
+            print 
+            print -- "example:"
+            print -- '    > baz(){print "$*" | grep baz}'
+            print -- '    > filter baz titi bazaar biz'
+            print -- '    bazaar'
+        } >&2
+        return 1
+    }
+    local predicate=$1
+    local result
+    typeset -a result
+    shift
+    for elem in $@; do
+        if eval $predicate $elem >/dev/null; then
+            result=( $result $elem )
+        fi
+    done
+    print $result
+# }
