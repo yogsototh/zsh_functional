@@ -1,7 +1,5 @@
 # Load functions
-func_reps=( ~/.zsh/functional/src )
-for rep in $func_reps; do
-  fpath=($rep $fpath)
-  autoload -U $rep/*(:t)
+for file in ~/.zsh/functional/src/* ; do
+  . $file
 done
 
