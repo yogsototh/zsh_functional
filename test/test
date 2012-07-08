@@ -1,0 +1,41 @@
+#!/usr/bin/env zsh
+
+. ~/.zsh/functional/load # load the functions
+
+# TEST - run a unit test
+#
+# $1: Test description
+# $2: String to eval
+# $3: Expected result
+TEST() {
+  desc=$1
+  code=$2
+  expected="$3 "
+  result=$(eval $code | tr "\n" " ")
+  if [[ $result == $expected ]]; then;
+    echo "SUCCESS: Test '$desc' passed"
+  else
+    echo "FAIL: Test '$desc' yielded $result, expected $expected"
+  fi
+}
+
+if [[ $debug == 1 ]] ; then;
+  echo "First test the \"test framework\""
+
+  TEST "THIS SHOULD SUCCESS" "echo 4" "4"
+  TEST "THIS SHOULD FAIL" "echo 3" "4"
+
+  echo "ok, now lets test what we should test"
+  echo "\n\n"
+fi
+
+echo "Starting tests of zsh higher order functions"
+
+plus_one () { echo $(($1+1)) }
+TEST "map can (+1) numbers" "map plus_one {0..5}" "1 2 3 4 5 6"
+
+divisible_by_two () { (( $(($1%2)) == 0 )) }
+TEST "filter can remove odd numbers" "filter divisible_by_two {0..4}" "0 2 4"
+
+addition () { echo $(($1 + $2)) }
+TEST "fold can sum numbers" "fold addition 0 {1..5}" "15"
