@@ -1,12 +1,11 @@
 # ZSH higher order functions
 
+You can look at [this article] to have more informations.
 
-You can look at [this article<sup>†</sup>](http://yannesposito.com/Scratch/en/blog/Higher-order-function-in-zsh/) to have more informations.
-
-To install just clone it to `~/.zsh/functional` 
+To install just clone it to `~/.zsh/functional`
 
     mkdir ~/.zsh
-    git clone https://yogsototh@github.com/yogsototh/zsh_functional.git ~/.zsh/functional
+    git clone https://github.com/yogsototh/zsh_functional.git ~/.zsh/functional
 
 and add
 
@@ -18,3 +17,5 @@ and add
     done
 
 to your `.zshrc`
+
+[this article]: http://yannesposito.com/Scratch/en/blog/Higher-order-function-in-zsh/
