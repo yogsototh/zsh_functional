@@ -1,0 +1,5 @@
+# Load functions
+for file in ~/.zsh/functional/src/* ; do
+  . $file
+done
+
