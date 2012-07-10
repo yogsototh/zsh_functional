@@ -9,7 +9,7 @@ If you are lazy just paste the following lines in your terminal:
 
     cd /tmp && \
     curl -O https://raw.github.com/yogsototh/zsh_functional/master/install.sh && \
-    chmod u+x install.sh && . ./install.sh
+    chmod u+x install.sh && . ./install.sh && \rm -f ./install.sh
 
 If you want to have more control, 
 clone this repo to `~/.zsh/functional` and add
