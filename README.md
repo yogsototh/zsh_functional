@@ -5,7 +5,7 @@ in zsh.
 
 ## Install
 
-If you are lazy just copy paste the following line in your terminal:
+If you are lazy just paste the following lines in your terminal:
 
     cd /tmp && \
     curl -O https://raw.github.com/yogsototh/zsh_functional/master/install.sh && \
@@ -17,6 +17,49 @@ clone this repo to `~/.zsh/functional` and add
     . ~/.zsh/functional/load
 
 to your `.zshrc`
+
+## Examples
+
+Here are some examples with named functions (`map`, `filter`, `fold`):
+
+    $ insideXY(){print -- "X $1 Y"}
+    $ map insideXY a b c d
+    X a Y
+    X b Y
+    X c Y
+    X d Y
+    
+    $ add(){print -- $(($1+$2))}
+    $ fold add {1..5}
+    15
+
+Here are some examples of using anonymous functions (`*l` and `*a`):
+
+    $ filterl 'echo $1|grep a >/dev/null' ab cd ef ada
+    ab
+    ada
+
+    $ folda '$1+$2' {1..5}
+    15
+
+    $ folda '$1*$2' {1..20}
+    2432902008176640000
+
+    $ mapl 'echo X $1:t Y' ~/.zsh/functional/src/*
+    X each Y
+    X filter Y
+    X fold Y
+    X map Y
+
+    $ mapa '$1*2' {1..3}
+    2
+    4
+    6
+
+    $ mapl 'echo result $1' $(mapa '$1+5' $(mapa '$1*2' {1..3}))
+    result 7
+    result 9
+    result 11
 
 ## Usage and documentation
 
