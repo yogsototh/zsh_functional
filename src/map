@@ -31,9 +31,13 @@ mapl () {
   typeset f="$1"; shift
   typeset x
   typeset result=0
-  for x; map_ "$x" "$f" || result=$?
+  for x; mapl_ "$x" "$f" || result=$?
   return $result
 }
+mapl_ () {
+  eval "${(e)2}"
+}
+
 
 mapa () {
   (($#<1)) && {
@@ -48,10 +52,18 @@ mapa () {
     return 1
   }
   typeset f="\$[ $1 ]"; shift
-  mapl "$f" "$@"
+  mapa__ "$f" "$@"
 }
 
-map_ () {
+mapa__ () {
+  (($#<1)) && return 1
+  typeset f="$1"; shift
+  typeset x
+  typeset result=0
+  for x; mapa_ "$x" "$f" || result=$?
+  return $result
+}
+
+mapa_ () {
   print -- "${(e)2}"
 }
-
