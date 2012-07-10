@@ -11,12 +11,12 @@ If you are lazy just copy paste the following line in your terminal:
     curl -O https://raw.github.com/yogsototh/zsh_functional/master/install.sh && \
     chmod u+x install.sh && . ./install.sh
 
-To install, clone this repo to `~/.zsh/functional` and add
+If you want to have more control, 
+clone this repo to `~/.zsh/functional` and add
 
     . ~/.zsh/functional/load
 
 to your `.zshrc`
-
 
 ## Usage and documentation
 
